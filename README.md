@@ -1,4 +1,4 @@
-<img src="client/src/assets/logo.svg" alt="Shop Logo" width="120" /> Shop – Shopping Management System
+<img src="client/src/assets/logo.svg" alt="Shop Logo" width="50" height="32" style="vertical-align:middle;" /> Shop – Shopping Management System
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -11,6 +11,7 @@
 - [Workflow – Main Screens](#workflow--main-screens)
 - [GUI Structure & Hooks](#gui-structure--hooks)
 - [API Endpoints](#-api-endpoints)
+- [AWS Cloud Deployment](#aws-cloud-deployment)
 - [Contact](#contact)
 
 ---
@@ -251,6 +252,55 @@ Built with **Material-UI (MUI)**, it leverages responsive design principles usin
   }
 }
 ```
+
+---
+
+## AWS Cloud Deployment
+
+The system is deployed on AWS using a professional architecture, ensuring security, high performance, and high availability.
+
+### Main Cloud Components
+
+- 🌐 Distribution & Security Layer:
+  - CloudFront + WAF – Global content delivery with attack protection
+  - Route 53 – Professional DNS management
+  - S3 – Frontend (React) file storage with automatic backup
+- 🔒 Network & Security Layer:
+  - VPC with Public/Private Subnets – Full separation between exposed and protected components
+  - Application Load Balancer – Smart load balancing with SSL termination
+  - Security Groups – Precise firewall rules for each component
+  - NAT Gateway – Controlled internet access from the private network
+- ⚙️ Application Layer:
+  - EC2 Instances in a private network with advanced Auto Scaling
+  - Docker Containers – .NET and Node.js servers in isolated containers
+  - ECR – Private Docker image registry with vulnerability scanning
+- 💾 Data Layer:
+  - RDS SQL Server – Managed database with automatic backups
+  - DocumentDB – MongoDB-compatible database with clustering
+- 📊 Monitoring & Security:
+  - CloudWatch – Real-time monitoring, centralized logs, and alerts
+  - Secrets Manager – Secure management of passwords and keys
+  - IAM Roles – Precise permissions for each component without exposing credentials
+  - VPC Endpoints – Private access to AWS services without traversing the public internet
+
+#### Security Principles Implemented
+
+- Defense in Depth – Multiple layers of protection
+- Least Privilege – Only the minimum required permissions
+- Network Isolation – Full separation between public and private components
+- Encryption at Rest & Transit – All data is encrypted
+- Automated Monitoring – Automatic monitoring and anomaly detection
+
+This architecture ensures high availability, automatic scalability, and enterprise-grade security while maintaining cost efficiency.
+
+---
+
+### AWS Architecture Diagram
+
+![AWS Architecture Diagram](client/screenshots/aws-architecture.png)
+
+---
+
 ## Contact
 
 For questions or feedback:
