@@ -1,0 +1,25 @@
+{
+  "name": "shop-server",
+  "version": "1.0.0",
+  "description": "Server side for shop GUI application",
+  "main": "server.js",  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Simple order server ready\" && exit 0"
+  },
+  "keywords": ["express", "nodejs", "mongodb", "shop"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

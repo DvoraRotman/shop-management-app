@@ -1,0 +1,48 @@
+{
+  "name": "shop-gui",
+  "private": true,
+  "version": "1.0.2-rc",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:dotnet\" \"npm run dev:node\"",
+    "dev:frontend": "vite",
+    "dev:dotnet": "cd ../dotnet-server && dotnet run",
+    "dev:node": "cd ../node-server && node server.js",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "start": "vite"
+  },
+  "dependencies": {
+    "@crystallize/react-dialog": "^5.1.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^7.1.1",
+    "@mui/material": "^7.1.1",
+    "@mui/x-date-pickers": "^8.5.1",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "crystallize": "^0.3.1",
+    "date-fns": "^4.1.0",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.23.1",
+    "stylis-plugin-rtl": "^2.1.1",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^9.2.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "vite": "^5.2.0"
+  }
+}

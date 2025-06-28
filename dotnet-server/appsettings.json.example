@@ -1,0 +1,13 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "Microsoft.EntityFrameworkCore.Database.Command": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=your_server;Database=your_db;User Id=your_user;Password=your_password;Encrypt=true;TrustServerCertificate=false;MultipleActiveResultSets=true"
+  },
+  "AllowedHosts": "*"
+}
