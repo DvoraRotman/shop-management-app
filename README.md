@@ -22,6 +22,8 @@ A smart shopping and order management system with a modern UI, ASP.NET server fo
 
 ---
 
+> **Note:** The following architecture and cloud deployment are described as a recommended professional solution. The system is designed and documented for such deployment, but is not actually deployed in the cloud.
+
 ## Architecture Diagram
 
 ```mermaid
@@ -62,7 +64,6 @@ graph TD
 │   ├── Data/
 │   ├── Models/
 │   ├── appsettings.json   # Server config (SQL Azure)
-│   ├── appsettings.Development.json # Server config for development
 │   └── ...
 ├── node-server/           # Node.js server (orders)
 │   ├── config/
@@ -90,7 +91,7 @@ graph TD
 > **Note:** If the servers or databases are not available, the system will automatically switch to offline/mock mode and use local fake data. You can still use and demo the client without backend connection.
 
 1. **Set Environment Variables:**
-   - Update `dotnet-server/appsettings.json` and `appsettings.Development.json` for SQL Azure connection.
+   - Update `dotnet-server/appsettings.json` for SQL Azure connection.
    - Update `node-server/.env` for MongoDB Atlas URI and secrets.
 
 2. **Install Dependencies:**
@@ -125,8 +126,8 @@ graph TD
     - `PORT` – Port for running the server
     - `CLIENT_URL` – Client URL for CORS
 - **ASP.NET Server:**
-  - `dotnet-server/appsettings.json` & `appsettings.Development.json` – SQL Azure connection string and logging
-  - `dotnet-server/appsettings.json.example` & `appsettings.Development.json.example` – Example files. Copy to the same file names and fill in:
+  - `dotnet-server/appsettings.json` – SQL Azure connection string and logging
+  - `dotnet-server/appsettings.json.example` – Example file. Copy to the same file name and fill in:
     - `DefaultConnection` – SQL Server connection string (server, database, user, password)
 
 ---
@@ -255,9 +256,19 @@ Built with **Material-UI (MUI)**, it leverages responsive design principles usin
 
 ---
 
+### AWS Architecture Diagram
+
+![AWS Architecture Diagram](client/screenshots/aws-architecture.png)
+
+---
 ## AWS Cloud Deployment
 
-The system is deployed on AWS using a professional architecture, ensuring security, high performance, and high availability.
+In a production cloud environment, both databases are designed to use fully managed AWS services:
+- **AWS RDS** for SQL Server (instead of Azure SQL, the system is designed for AWS RDS)
+- **AWS DocumentDB** for MongoDB (instead of MongoDB Atlas, the system is designed for AWS DocumentDB)
+This approach leverages managed services to provide flexibility, scalability, reliability, and reduced operational overhead.
+
+The system is deployed on AWS using a professional architecture, ensuring security, high performance, and high availability. This is the recommended way to deploy such applications in production environments.
 
 ### Main Cloud Components
 
@@ -266,8 +277,7 @@ The system is deployed on AWS using a professional architecture, ensuring securi
   - Route 53 – Professional DNS management
   - S3 – Frontend (React) file storage with automatic backup
 - 🔒 Network & Security Layer:
-  - VPC with Public/Private Subnets – Full separation between exposed and protected components
-  - Application Load Balancer – Smart load balancing with SSL termination
+  - **VPC with Public/Private Subnets** – Complete separation between public and private resources: EC2 application servers and APIs are deployed in Private Subnets (fully protected, with no direct internet access). The Application Load Balancer (ALB) resides in a Public Subnet, receives incoming traffic from the internet, and securely forwards it to the EC2 instances. When application servers need to access the internet (for updates, package downloads, etc.), this is done via a NAT Gateway, ensuring secure and controlled outbound connectivity.
   - Security Groups – Precise firewall rules for each component
   - NAT Gateway – Controlled internet access from the private network
 - ⚙️ Application Layer:
@@ -279,7 +289,7 @@ The system is deployed on AWS using a professional architecture, ensuring securi
   - DocumentDB – MongoDB-compatible database with clustering
 - 📊 Monitoring & Security:
   - CloudWatch – Real-time monitoring, centralized logs, and alerts
-  - Secrets Manager – Secure management of passwords and keys
+  - Secrets Manager – Secure management of passwords and keys. All database credentials are securely stored in AWS Secrets Manager, allowing the servers to retrieve them safely at runtime without exposing them in code or configuration files.
   - IAM Roles – Precise permissions for each component without exposing credentials
   - VPC Endpoints – Private access to AWS services without traversing the public internet
 
@@ -292,12 +302,6 @@ The system is deployed on AWS using a professional architecture, ensuring securi
 - Automated Monitoring – Automatic monitoring and anomaly detection
 
 This architecture ensures high availability, automatic scalability, and enterprise-grade security while maintaining cost efficiency.
-
----
-
-### AWS Architecture Diagram
-
-![AWS Architecture Diagram](client/screenshots/aws-architecture.png)
 
 ---
 

@@ -58,9 +58,7 @@ const ShoppingPage = ({ onNextStep, onGoToStep2 }) => {
   const handleAddToCart = () => {
     if (selectedProduct) {
       addToCart(selectedProduct, quantity);
-      // openCartDrawer();
-      // dispatch(clearSelectedProduct()); // לא צריך יותר
-      handleProductSelect(null); // איפוס מקומי
+      handleProductSelect(null); 
       showSuccessMessage('המוצר נוסף לעגלה בהצלחה');
     }
   };
